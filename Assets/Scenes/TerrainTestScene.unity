@@ -329,7 +329,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   width: 10
   height: 10
-  cellSize: 1
+  cellSize: 2
 --- !u!4 &1229032550
 Transform:
   m_ObjectHideFlags: 0

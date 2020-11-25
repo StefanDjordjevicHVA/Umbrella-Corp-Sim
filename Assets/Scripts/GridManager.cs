@@ -25,15 +25,21 @@ public class GridManager : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        for (int x = 0; x < _gridCellsGizmo.GetLength(0); x++)
+        if (_gridCellsGizmo != null)
         {
-            for (int z = 0; z < _gridCellsGizmo.GetLength(1); z++)
+            for (int x = 0; x < _gridCellsGizmo.GetLength(0); x++)
             {
-                Gizmos.color = Color.red;
-                Gizmos.DrawCube(new Vector3(_gridCellsGizmo[x, z].posX + (_gridCellsGizmo[x, z].cellSize * 0.5f),0,_gridCellsGizmo[x, z].posZ+ (_gridCellsGizmo[x, z].cellSize * 0.5f)),
-                    new Vector3(_gridCellsGizmo[x, z].cellSize*0.1f,_gridCellsGizmo[x, z].cellSize*0.1f,_gridCellsGizmo[x, z].cellSize*0.1f) );
+                for (int z = 0; z < _gridCellsGizmo.GetLength(1); z++)
+                {
+                    Gizmos.color = Color.red;
+                    Gizmos.DrawCube(
+                        new Vector3(_gridCellsGizmo[x, z].posX + (_gridCellsGizmo[x, z].cellSize * 0.5f), 0,
+                            _gridCellsGizmo[x, z].posZ + (_gridCellsGizmo[x, z].cellSize * 0.5f)),
+                        new Vector3(_gridCellsGizmo[x, z].cellSize * 0.1f, _gridCellsGizmo[x, z].cellSize * 0.1f,
+                            _gridCellsGizmo[x, z].cellSize * 0.1f));
+                }
             }
         }
-        
+
     }
 }
