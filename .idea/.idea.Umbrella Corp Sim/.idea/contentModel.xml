@@ -36,6 +36,9 @@
           <e p="MouseLook.cs" t="Include" />
           <e p="RigidbodyFirstPersonController.cs" t="Include" />
         </e>
+        <e p="Shaders" t="Include">
+          <e p="TerrainShader.shader" t="Include" />
+        </e>
         <e p="Standard Assets" t="Include">
           <e p="2D" t="Include">
             <e p="Scripts" t="Include">
@@ -267,6 +270,11 @@
                 <e p="ReflectiveDiffuseSpecTransp.shader" t="Include" />
               </e>
             </e>
+          </e>
+        </e>
+        <e p="Textures" t="Include">
+          <e p="PBR Ground Materials #1 [Dirt&amp; Grass]" t="Include">
+            <e p="Documentation.txt" t="Include" />
           </e>
         </e>
       </e>

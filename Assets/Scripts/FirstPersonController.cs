@@ -103,6 +103,23 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
             
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1f));
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    if (hit.transform.tag == "Terrain")
+                    {
+                        Debug.Log("Terrain Clicked");
+                        hit.transform.GetComponent<MarchingCubes>().RemoveTerrain(hit.point);
+                    }
+
+
+                }
+            }
+            
         }
 
 

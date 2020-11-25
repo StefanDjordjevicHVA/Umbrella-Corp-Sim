@@ -14,7 +14,6 @@ public class MarchingCubes : MonoBehaviour
 	
 	List<Vector3> vertices = new List<Vector3>();
 	List<int> triangles = new List<int>();
-	List<Vector2> uvs = new List<Vector2>();
 	
 	MeshFilter meshFilter;
 	private MeshCollider meshCollider;
@@ -24,7 +23,7 @@ public class MarchingCubes : MonoBehaviour
 	public int width = 32;
 	public int height = 8;
 	private float[,,] terrainMap;
-
+	
 	private void Start()
 	{
 		meshFilter = GetComponent<MeshFilter>();
@@ -48,9 +47,13 @@ public class MarchingCubes : MonoBehaviour
 			{
 				for (int z = 0; z < width + 1; z++)
 				{
-					float thisHeight = (float) height *
-					                   Mathf.PerlinNoise((float) x / 16f * 1.5f + .001f,
-						                   (float) z / 16f * 1.5f + .001f);
+					float thisHeight;
+					if (x > 10 && x < 22 && z > 5 && z < 22)
+						thisHeight = 1f;
+					else
+						thisHeight = (float) height *
+						             Mathf.PerlinNoise((float) (x) / 16f * 1.5f + .001f,
+							             (float) (z) / 16f * 1.5f + .001f);
 
 					terrainMap[x, y, z] = (float) y - thisHeight;
 				}
@@ -99,6 +102,13 @@ public class MarchingCubes : MonoBehaviour
 		CreateMeshData();
 	}
 	
+	public void RemoveTerrain(Vector3 pos)
+	{
+		Vector3Int v3Int = new Vector3Int(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y), Mathf.FloorToInt(pos.z));
+		terrainMap[v3Int.x, v3Int.y, v3Int.z] = 1f;
+		CreateMeshData();
+	}
+	
 	float SampleTerrain(Vector3Int point)
 	{
 		return terrainMap[point.x, point.y, point.z];
@@ -128,7 +138,6 @@ public class MarchingCubes : MonoBehaviour
 			cube[i] = SampleTerrain(position + CornerTable[i]);
 		}
 		
-		int uvspot = 0;
 		int configIndex = GetCubeConfiguration(cube);
 		
 		if (configIndex == 0 || configIndex == 255) return;
@@ -181,23 +190,6 @@ public class MarchingCubes : MonoBehaviour
 				else
 					triangles.Add(VertForIndice(vertPosition));
 
-				// Setting UV's (PLACEHOLDER CODE)
-				if (uvspot == 0)
-				{
-					uvs.Add(new Vector2(0f, 0f));
-					uvspot++;
-				}
-				else if (uvspot == 1)
-				{
-					uvs.Add(new Vector2(0f, 1f));
-					uvspot++;
-				}
-				else if (uvspot == 2)
-				{
-					uvs.Add(new Vector2(1f, 1f));
-					uvspot = 0;
-				}
-				
 				edgeIndex++;
 			}
 		}
@@ -207,7 +199,6 @@ public class MarchingCubes : MonoBehaviour
 	{
 		vertices.Clear();
 		triangles.Clear();
-		uvs.Clear();
 	}
 
 	void BuildMesh()
@@ -215,7 +206,6 @@ public class MarchingCubes : MonoBehaviour
 		mesh.Clear();
 		mesh.vertices = vertices.ToArray();
 		mesh.triangles = triangles.ToArray();
-		mesh.uv = uvs.ToArray();
 		mesh.RecalculateNormals();
 		meshFilter.mesh = mesh;
 		meshCollider.sharedMesh = mesh;
