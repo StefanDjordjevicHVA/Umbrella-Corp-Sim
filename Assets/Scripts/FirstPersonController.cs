@@ -86,7 +86,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             /** MY OWN LITTLE CODE
              *  Mouse button input
              */
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
             {
                 Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1f));
                 RaycastHit hit;
@@ -103,7 +103,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 }
             }
             
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButton(1))
             {
                 Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1f));
                 RaycastHit hit;

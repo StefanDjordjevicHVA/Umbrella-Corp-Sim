@@ -5,6 +5,7 @@ using System.Runtime.InteropServices;
 using System.Security.Permissions;
 using UnityEditor.UI;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
 public class MarchingCubes : MonoBehaviour
@@ -33,13 +34,14 @@ public class MarchingCubes : MonoBehaviour
 		
 		mesh = new Mesh();
 		
+		//PopulateTerrainMap2D();
+		PopulateTerrainMap3D();
 		
-		PopulateTerrainMap();
 		CreateMeshData();
 		
 	}
 	
-	void PopulateTerrainMap()
+	void PopulateTerrainMap2D()
 	{
 		for (int x = 0; x < width + 1; x++)
 		{
@@ -56,6 +58,37 @@ public class MarchingCubes : MonoBehaviour
 							             (float) (z) / 16f * 1.5f + .001f);
 
 					terrainMap[x, y, z] = (float) y - thisHeight;
+				}
+			}
+		}
+	}
+	
+	void PopulateTerrainMap3D() // Refactoring PopulateTerrainMap to work with 3D mapping and noise.
+	{
+		// TODO: Implement different layers of Noise (Create more realistic caves).
+		
+		int perlinX = Random.Range(0, 100); // randomly pick a position in the 3D noise map.
+		int perlinY = Random.Range(0, 100); //
+		int perlinZ = Random.Range(0, 100); //
+		
+		Debug.Log(perlinX);
+		
+		for (int x = 0; x < width + 1; x++)
+		{
+			for (int y = 0; y < height + 1; y++)
+			{
+				for (int z = 0; z < width + 1; z++)
+				{
+					float perlinValue;
+					
+					// Modify later for chunks
+					if (x == 0 || z == 0 || y == 0 || x == width || z == width || y == height)  
+						perlinValue = 1f;
+					else
+						perlinValue = PerlinNoise3D.Perlin3D((float) (x + perlinX) / 16f * 1.5f + .001f,
+						(float) (y + perlinY)/ 16f * 1.5f + .001f, (float) (z + perlinZ)/ 16f * 1.5f + .001f);
+					
+					terrainMap[x, y, z] = perlinValue;
 				}
 			}
 		}
@@ -157,6 +190,7 @@ public class MarchingCubes : MonoBehaviour
 
 				Vector3 vertPosition;
 				
+				// Calculations to get smoother terrain.
 				if (smoothTerrain)
 				{
 					// Get the terrain values at either end of our edge.
@@ -180,7 +214,7 @@ public class MarchingCubes : MonoBehaviour
 					// Get midpoint of edge
 					vertPosition = (vert1 + vert2) * 0.5f;
 				}
-
+				
 				if (flatShaded)
 				{
 					// Add to vert and triangles List and increment edgeIndex
