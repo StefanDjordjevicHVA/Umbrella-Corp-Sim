@@ -26,16 +26,16 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Chunk.cs" t="Include" />
           <e p="FirstPersonController.cs" t="Include" />
-          <e p="Grid.cs" t="Include" />
-          <e p="GridCell.cs" t="Include" />
-          <e p="GridManager.cs" t="Include" />
+          <e p="GameData.cs" t="Include" />
           <e p="HeadBob.cs" t="Include" />
           <e p="MarchingCubes.cs" t="Include" />
           <e p="MeshGenerationScript.cs" t="Include" />
           <e p="MouseLook.cs" t="Include" />
           <e p="PerlinNoise3D.cs" t="Include" />
           <e p="RigidbodyFirstPersonController.cs" t="Include" />
+          <e p="WorldGenerator.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
           <e p="TerrainShader.shader" t="Include" />

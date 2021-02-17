@@ -43,6 +43,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        public WorldGenerator world;
+
         // Use this for initialization
         private void Start()
         {
@@ -86,7 +88,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
             /** MY OWN LITTLE CODE
              *  Mouse button input
              */
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButtonDown(0))
             {
                 Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1f));
                 RaycastHit hit;
@@ -96,14 +98,14 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     if (hit.transform.tag == "Terrain")
                     {
                         Debug.Log("Terrain Clicked");
-                        hit.transform.GetComponent<MarchingCubes>().PlaceTerrain(hit.point);
+                        world.GetChunkFromVector3(hit.transform.position).PlaceTerrain(hit.point);
                     }
 
 
                 }
             }
             
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButtonDown(1))
             {
                 Ray ray = m_Camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1f));
                 RaycastHit hit;
@@ -113,7 +115,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     if (hit.transform.tag == "Terrain")
                     {
                         Debug.Log("Terrain Clicked");
-                        hit.transform.GetComponent<MarchingCubes>().RemoveTerrain(hit.point);
+                        world.GetChunkFromVector3(hit.transform.position).RemoveTerrain(hit.point);
                     }
 
 

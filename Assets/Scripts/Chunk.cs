@@ -1,35 +1,45 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Security.Permissions;
-using UnityEditor.UI;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-[RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
-public class MarchingCubes : MonoBehaviour
+public class Chunk
 {
-	public bool smoothTerrain;
+    public bool smoothTerrain;
 	public bool flatShaded;
+
+	public GameObject chunkObject;
+	private Vector3Int chunkPosition;
 	
 	List<Vector3> vertices = new List<Vector3>();
 	List<int> triangles = new List<int>();
 	
 	MeshFilter meshFilter;
+	private MeshRenderer meshRenderer;
 	private MeshCollider meshCollider;
 	private Mesh mesh;
-
-	private float terrainSurface = 0.5f;
-	public int width = 32;
-	public int height = 8;
+	
 	private float[,,] terrainMap;
 	
-	private void Start()
+	private int width => GameData.ChunkWidth;
+	private int height => GameData.ChunkHeight;
+	private float terrainSurface => GameData.TerrainSurface;
+
+	public Chunk(Vector3Int _position, bool _smooth, bool _flatShaded)
 	{
-		meshFilter = GetComponent<MeshFilter>();
-		meshCollider = GetComponent<MeshCollider>();
-		transform.tag = "Terrain";
+		chunkObject = new GameObject();
+		chunkObject.name = String.Format("Chunk {0}, {1}", _position.x, _position.z);
+		chunkPosition = _position;
+		chunkObject.transform.position = chunkPosition;
+		smoothTerrain = _smooth;
+		flatShaded = _flatShaded;
+		
+		meshFilter = chunkObject.AddComponent<MeshFilter>();
+		meshCollider = chunkObject.AddComponent<MeshCollider>();
+		meshRenderer = chunkObject.AddComponent<MeshRenderer>();
+		meshRenderer.material = Resources.Load<Material>("Materials/Terrain");
+		chunkObject.transform.tag = "Terrain";
 		terrainMap = new float[width + 1, height + 1, width + 1];
 		
 		mesh = new Mesh();
@@ -49,12 +59,11 @@ public class MarchingCubes : MonoBehaviour
 				for (int z = 0; z < width + 1; z++)
 				{
 					float thisHeight;
-					/*if (x > 10 && x < 22 && z > 5 && z < 22)
+					/*if (x > 10 && x < 22 && z > 5 && z < 22) // GROOT GAT IN VLOER
 						thisHeight = 1f;
 					else*/
-						thisHeight = (float) height *
-						             Mathf.PerlinNoise((float) (x) / 16f * 1.5f + .001f,
-							             (float) (z) / 16f * 1.5f + .001f);
+
+					thisHeight = GameData.GetTerrainHeight(x + chunkPosition.x, z + chunkPosition.z);
 
 					terrainMap[x, y, z] = (float) y - thisHeight;
 				}
@@ -130,6 +139,7 @@ public class MarchingCubes : MonoBehaviour
 	public void PlaceTerrain(Vector3 pos)
 	{
 		Vector3Int v3Int = new Vector3Int(Mathf.CeilToInt(pos.x), Mathf.CeilToInt(pos.y), Mathf.CeilToInt(pos.z));
+		v3Int -= chunkPosition;
 		terrainMap[v3Int.x, v3Int.y, v3Int.z] = 0f;
 		CreateMeshData();
 	}
@@ -137,6 +147,7 @@ public class MarchingCubes : MonoBehaviour
 	public void RemoveTerrain(Vector3 pos)
 	{
 		Vector3Int v3Int = new Vector3Int(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y), Mathf.FloorToInt(pos.z));
+		v3Int -= chunkPosition;
 		terrainMap[v3Int.x, v3Int.y, v3Int.z] = 1f;
 		CreateMeshData();
 	}
