@@ -11,6 +11,7 @@ public class Chunk
 
 	public GameObject chunkObject;
 	private Vector3Int chunkPosition;
+	private Vector3Int perlinStartPos;
 	
 	List<Vector3> vertices = new List<Vector3>();
 	List<int> triangles = new List<int>();
@@ -23,14 +24,15 @@ public class Chunk
 	private float[,,] terrainMap;
 	
 	private int width => GameData.ChunkWidth;
-	private int height => GameData.ChunkHeight;
+	private int height => GameData.ChunkWidth;
 	private float terrainSurface => GameData.TerrainSurface;
 
-	public Chunk(Vector3Int _position, bool _smooth, bool _flatShaded)
+	public Chunk(Vector3Int _position, Vector3Int _perlinStartPos, bool _smooth, bool _flatShaded)
 	{
 		chunkObject = new GameObject();
 		chunkObject.name = String.Format("Chunk {0}, {1}", _position.x, _position.z);
 		chunkPosition = _position;
+		perlinStartPos = _perlinStartPos;
 		chunkObject.transform.position = chunkPosition;
 		smoothTerrain = _smooth;
 		flatShaded = _flatShaded;
@@ -44,8 +46,8 @@ public class Chunk
 		
 		mesh = new Mesh();
 		
-		PopulateTerrainMap2D();
-		//PopulateTerrainMap3D();
+		//PopulateTerrainMap2D();
+		PopulateTerrainMap3D();
 		
 		CreateMeshData();
 	}
@@ -75,12 +77,6 @@ public class Chunk
 	{
 		// TODO: Implement different layers of Noise (Create more realistic caves).
 		
-		int perlinX = Random.Range(0, 100); // randomly pick a position in the 3D noise map.
-		int perlinY = Random.Range(0, 100); //
-		int perlinZ = Random.Range(0, 100); //
-		
-		Debug.Log(perlinX);
-		
 		for (int x = 0; x < width + 1; x++)
 		{
 			for (int y = 0; y < height + 1; y++)
@@ -89,12 +85,12 @@ public class Chunk
 				{
 					float perlinValue;
 					
-					// Modify later for chunks
-					if (x == 0 || z == 0 || y == 0 || x == width || z == width || y == height)  
+					// Modify later for chunks (DIT KAN IN GameData)
+					if (x + chunkPosition.x == 0 || y + chunkPosition.y == 0 || z + chunkPosition.z == 0)  
 						perlinValue = 1f;
 					else
-						perlinValue = PerlinNoise3D.Perlin3D((float) (x + perlinX) / 16f * 1.5f + .001f,
-						(float) (y + perlinY)/ 16f * 1.5f + .001f, (float) (z + perlinZ)/ 16f * 1.5f + .001f);
+						perlinValue = PerlinNoise3D.Perlin3D((float) (x + perlinStartPos.x + chunkPosition.x + 1) / 16f * 1.5f + .001f,
+						(float) (y + perlinStartPos.y + chunkPosition.y + 1)/ 16f * 1.5f + .001f, (float) (z + perlinStartPos.z + chunkPosition.z + 1)/ 16f * 1.5f + .001f);
 					
 					terrainMap[x, y, z] = perlinValue;
 				}
@@ -113,8 +109,6 @@ public class Chunk
 			{
 				for (int z = 0; z < width; z++)
 				{
-					
-					
 					// Pass the value into MarchCube function.
 					MarchCube(new Vector3Int(x,y,z));
 				}

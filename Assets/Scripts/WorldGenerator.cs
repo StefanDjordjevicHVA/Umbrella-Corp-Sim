@@ -13,24 +13,32 @@ public class WorldGenerator : MonoBehaviour
     
     void Start()
     {
-        //Chunk chunk = new Chunk(Vector3Int.zero, smooth, flatShaded);
+        //Picking a random starting location within the perlinNoise.
+        Vector3Int perlinStartingPosition = new Vector3Int( 
+            (int)Random.Range(0, 100), 
+            (int)Random.Range(0, 100),
+            (int)Random.Range(0, 100));
         
-        Generate();
+        Generate(perlinStartingPosition);
     }
 
-    void Generate()
+    void Generate(Vector3Int perlinStart)
     {
         for (int x = 0; x < WorldSizeInChunks; x++)
         {
-            for (int z = 0; z < WorldSizeInChunks; z++)
+            for (int y = 0; y < WorldSizeInChunks; y++)
             {
-                Vector3Int chunkPos = new Vector3Int(x * GameData.ChunkWidth,0, z * GameData.ChunkWidth);
-                _chunks.Add(chunkPos, new Chunk(chunkPos, smooth, flatShaded));
-                _chunks[chunkPos].chunkObject.transform.SetParent(transform);
+                for (int z = 0; z < WorldSizeInChunks; z++)
+                {
+                    Vector3Int chunkPos = new Vector3Int(x * GameData.ChunkWidth, y * GameData.ChunkWidth,
+                        z * GameData.ChunkWidth);
+                    _chunks.Add(chunkPos, new Chunk(chunkPos, perlinStart, smooth, flatShaded));
+                    _chunks[chunkPos].chunkObject.transform.SetParent(transform);
+                }
             }
         }
         
-        Debug.Log(string.Format("{0} x {0} world generated.", (WorldSizeInChunks * GameData.ChunkWidth)));
+        Debug.Log(string.Format("{0} x {0} x {0} world generated.", (WorldSizeInChunks * GameData.ChunkWidth * GameData.ChunkWidth)));
     }
 
     public Chunk GetChunkFromVector3(Vector3 pos)
