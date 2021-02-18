@@ -27,12 +27,15 @@ public class Chunk
 	private int height => GameData.ChunkWidth;
 	private float terrainSurface => GameData.TerrainSurface;
 
-	public Chunk(Vector3Int _position, Vector3Int _perlinStartPos, bool _smooth, bool _flatShaded)
+	private int worldSizeInChunks;
+
+	public Chunk(Vector3Int _position, Vector3Int _perlinStartPos, int _worldSizeChunks, bool _smooth, bool _flatShaded)
 	{
 		chunkObject = new GameObject();
 		chunkObject.name = String.Format("Chunk {0}, {1}", _position.x, _position.z);
 		chunkPosition = _position;
 		perlinStartPos = _perlinStartPos;
+		worldSizeInChunks = _worldSizeChunks;
 		chunkObject.transform.position = chunkPosition;
 		smoothTerrain = _smooth;
 		flatShaded = _flatShaded;
@@ -86,7 +89,8 @@ public class Chunk
 					float perlinValue;
 					
 					// Modify later for chunks (DIT KAN IN GameData)
-					if (x + chunkPosition.x == 0 || y + chunkPosition.y == 0 || z + chunkPosition.z == 0)  
+					if (x + chunkPosition.x == 0 || y + chunkPosition.y == 0 || z + chunkPosition.z == 0 ||
+					    x + chunkPosition.x == width * worldSizeInChunks || y + chunkPosition.y == width * worldSizeInChunks || z + chunkPosition.z == width * worldSizeInChunks)  
 						perlinValue = 1f;
 					else
 						perlinValue = PerlinNoise3D.Perlin3D((float) (x + perlinStartPos.x + chunkPosition.x + 1) / 16f * 1.5f + .001f,

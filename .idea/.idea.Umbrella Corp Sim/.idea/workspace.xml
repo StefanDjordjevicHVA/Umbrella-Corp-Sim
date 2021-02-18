@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="db895d49-5b8c-4141-8219-3f4c5359bc31" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MarchingCubes.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MarchingCubes.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chunk.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/WorldGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/WorldGenerator.cs" afterDir="false" />
     </list>
@@ -118,7 +117,7 @@
       <workItem from="1606822267070" duration="3258000" />
       <workItem from="1613554809572" duration="6933000" />
       <workItem from="1613643396948" duration="1168000" />
-      <workItem from="1613644671736" duration="2393000" />
+      <workItem from="1613644671736" duration="4415000" />
     </task>
     <servers />
   </component>
