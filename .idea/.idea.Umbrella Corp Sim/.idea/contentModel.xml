@@ -38,6 +38,10 @@
           <e p="WorldGenerator.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
+          <e p="TerrainScanEffect" t="Include">
+            <e p="TerrainScan.cs" t="Include" />
+            <e p="TerrainScan.shader" t="Include" />
+          </e>
           <e p="TerrainShader.shader" t="Include" />
           <e p="Textures" t="Include">
             <e p="PBR Ground Materials #1 [Dirt&amp; Grass]" t="Include">

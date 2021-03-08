@@ -97,7 +97,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 {
                     if (hit.transform.tag == "Terrain")
                     {
-                        Debug.Log("Terrain Clicked");
+                        Debug.Log(hit.transform.position);
                         world.GetChunkFromVector3(hit.transform.position).PlaceTerrain(hit.point);
                     }
 
@@ -115,7 +115,8 @@ namespace UnityStandardAssets.Characters.FirstPerson
                     if (hit.transform.tag == "Terrain")
                     {
                         Debug.Log("Terrain Clicked");
-                        world.GetChunkFromVector3(hit.transform.position).RemoveTerrain(hit.point);
+                        world.GetChunkFromVector3(hit.transform.position);
+                            //.RemoveTerrain(hit.point);
                     }
 
 

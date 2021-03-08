@@ -32,7 +32,7 @@ public class Chunk
 	public Chunk(Vector3Int _position, Vector3Int _perlinStartPos, int _worldSizeChunks, bool _smooth, bool _flatShaded)
 	{
 		chunkObject = new GameObject();
-		chunkObject.name = String.Format("Chunk {0}, {1}", _position.x, _position.z);
+		chunkObject.name = String.Format("Chunk {0}, {1}, {2}", _position.x, _position.y, _position.z);
 		chunkPosition = _position;
 		perlinStartPos = _perlinStartPos;
 		worldSizeInChunks = _worldSizeChunks;
