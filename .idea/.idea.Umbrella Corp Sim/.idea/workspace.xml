@@ -20,12 +20,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="db895d49-5b8c-4141-8219-3f4c5359bc31" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Umbrella Corp Sim/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Materials/Terrain.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Materials/Terrain.mat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MarchingCubes.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MarchingCubes.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Chunk.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Chunk.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/FirstPersonController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FirstPersonController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/TerrainShader.shader" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Shaders/TerrainShader.shader" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Dirt_23/Dirt_23_Diffuse.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Dirt_23/Dirt_23_Diffuse.tga.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Dirt_23/Dirt_23_Normal.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Dirt_23/Dirt_23_Normal.tga.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Grass_10/Grass_10_Diffuse.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Grass_10/Grass_10_Diffuse.tga.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Grass_10/Grass_10_Normal.tga" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Shaders/Textures/PBR Ground Materials #1 [Dirt&amp; Grass]/Textures/Grass_10/Grass_10_Normal.tga.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_prefabs/FPSController.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_prefabs/FPSController.prefab" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,15 +66,15 @@
         <option value="$PROJECT_DIR$/Assets/SimpleMove.cs" />
         <option value="$PROJECT_DIR$/Assets/Standard Assets/Utility/SimpleActivatorMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Standard Assets/Characters/FirstPersonCharacter/Scripts/FirstPersonController.cs" />
-        <option value="$PROJECT_DIR$/Assets/Shaders/TerrainShader.shader" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PerlinNoise3D.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MarchingCubes.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameData.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/WorldGenerator.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Chunk.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FirstPersonController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Chunk.cs" />
         <option value="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.cs" />
         <option value="$PROJECT_DIR$/Assets/Shaders/TerrainScanEffect/TerrainScan.shader" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameData.cs" />
+        <option value="$PROJECT_DIR$/Assets/Shaders/TerrainShader.shader" />
       </list>
     </option>
   </component>
@@ -125,6 +139,10 @@
       <workItem from="1614607861384" duration="729000" />
       <workItem from="1615202128062" duration="11497000" />
       <workItem from="1615217440890" duration="949000" />
+      <workItem from="1615236929873" duration="1648000" />
+      <workItem from="1615286418882" duration="10614000" />
+      <workItem from="1615413199565" duration="897000" />
+      <workItem from="1615816653981" duration="4321000" />
     </task>
     <servers />
   </component>
@@ -149,10 +167,6 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1605697551626">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040/1920.-853.1200.1880@0.0.1920.1040" timestamp="1605697551626" />
     <state width="1877" height="62" key="GridCell.Tab.0.bottom" timestamp="1613655381003">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -217,9 +231,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1877" height="62" key="GridCell.Tab.3.right/0.0.1920.1040/1920.-853.1200.1880@0.0.1920.1040" timestamp="1613655381004" />
-    <state x="2021" y="-268" key="SettingsEditor" timestamp="1606145067107">
-      <screen x="1920" y="-853" width="1200" height="1880" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1615818306514">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="2021" y="-268" key="SettingsEditor/0.0.1920.1040/1920.-853.1200.1880@1920.-853.1200.1880" timestamp="1606145067107" />
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.-853.1200.1880@0.0.1920.1040" timestamp="1615818306514" />
   </component>
 </project>

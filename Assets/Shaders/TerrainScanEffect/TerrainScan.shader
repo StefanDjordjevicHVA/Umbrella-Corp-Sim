@@ -10,6 +10,11 @@ Shader "Hidden/TerrainScan"
         _DetailTex("Texture", 2D) = "white" {}
         _ScanDistance("Scan Distance", float) = 0
         _ScanWidth("Scan Width", float) = 10
+        _EdgeStrength("The strength of the edge of scan", float) = 10
+        _LeadColor("Leading Edge Color", Color) = (1,1,1,0)
+        _MiddleColor("Middel part scan Color", Color) = (1,1,1,0)
+        _TrailColor("Fading Trail part Color", Color) = (1,1,1,0)
+        _HorizontalBarColor("Color for the horizontal scan bars", Color) = (1,1,1,0)
     }
     SubShader
     {
@@ -66,6 +71,27 @@ Shader "Hidden/TerrainScan"
 			float _ScanDistance;
             float _ScanWidth;
 
+            float _EdgeStrength;
+            float4 _LeadColor;
+            float4 _MiddleColor;
+            float4 _TrailColor;
+            float4 _HorizontalBarColor;
+
+            float4 horizontalScanBars(float2 p)
+            {
+                // saturate functie clamps waarde tussen 0 en 1
+                // round functie rond af naar heel getal ( 0 of 1 )
+                // abs functie maakt het positief
+                // frac funtie returnt alles achter de komma
+                // In deze functie stop je de uv posities maar gebruikt alleen de Y values.
+                // Hierdoor krijg je horizontale balkjes (lijnen) die ingevult worden met een kleur
+
+                return 1 - saturate(round(abs(frac(p.y * 200) * 2)));
+
+                // Afrondings fouten. 0.5
+                
+            }
+            
             half4 frag (v2f i) : SV_Target
             {
                 half4 col = tex2D(_MainTex, i.uv);
@@ -76,13 +102,28 @@ Shader "Hidden/TerrainScan"
                 float3 wsPos = _WorldSpaceCameraPos + wsDir;
 
                 float dist = distance(wsPos, _WorldSpaceCameraPos);
+
+                // scanCol moet een float4 (half4) zijn om alle rgb waardes te kunnen krijgen.
+                half4 scanCol = half4(0, 0, 0, 0);
                 
-                if(dist < _ScanDistance && dist > _ScanDistance - _ScanWidth)
+                if(dist < _ScanDistance && dist > _ScanDistance - _ScanWidth && linearDepth < 1)
                 {
-                    return 1;
+                    // Doormiddel van deze berekening krijgt de scan in de breedte een waarde die van verstepunt naar het punt die het dichts bij is een waarde 1 tot 0
+                    float fade = 1 - (_ScanDistance - dist) / (_ScanWidth);
+
+                    // Eerst Lerp ik de kleur waardes tussen de lead kleur en de middel kleur.
+                    // Door de lerp waarde (fade kracht) te machten met de edge strength krijg je een dikkere scan lead.
+                    half4 edge = lerp(_MiddleColor, _LeadColor, pow(fade, _EdgeStrength));
+                    // Daarna lerp ik de edge float (eerder gelerpte waarden) met de trail kleur.
+                    // als laatste voeg je de horizontale fragment shader functie toe en die tel je op bij de scanCol maal de gewenste kleur.
+                    scanCol = lerp(_TrailColor, edge, fade) + (horizontalScanBars(i.uv) * _HorizontalBarColor);
+
+                    scanCol *= fade;
                 }
-         
-                return col;
+
+
+                // Door de "scanCol" op te tellen aan de kleur van de originele "col" fade de scan naar de kleur van de originele Render ipv naar zwart (geen kleur "0"). 
+                return col + scanCol;
                 
                     
             }

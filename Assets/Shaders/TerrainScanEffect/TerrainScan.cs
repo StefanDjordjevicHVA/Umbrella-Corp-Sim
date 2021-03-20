@@ -30,7 +30,6 @@ public class TerrainScan : MonoBehaviour
             _scanning = true;
             scanDistance = 0;
         }
-        
     }
 
     private void OnEnable()
@@ -97,7 +96,7 @@ public class TerrainScan : MonoBehaviour
         
         mat.SetTexture("_MainTex", source);
         
-        GL.PopMatrix();
+        GL.PushMatrix();
         GL.LoadOrtho();
 
         mat.SetPass(0);

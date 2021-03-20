@@ -11,12 +11,12 @@ public static class GameData
 	public static float BaseTerrainHeight = 60f;
 	public static float TerrainHeightRange = 10f;
 	
-	public static float GetTerrainHeight(int x, int z) // TIJDELIJK
+	/*public static float GetTerrainHeight(int x, int z) // TIJDELIJK
 	{
 		return (float) TerrainHeightRange *
 		             Mathf.PerlinNoise((float) (x) / 16f * 1.5f + .001f,
 			             (float) (z) / 16f * 1.5f + .001f) + BaseTerrainHeight;
-	}
+	}*/
 	
     public static Vector3Int[] CornerTable = new Vector3Int[8]
     {

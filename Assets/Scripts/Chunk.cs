@@ -49,31 +49,9 @@ public class Chunk
 		
 		mesh = new Mesh();
 		
-		//PopulateTerrainMap2D();
 		PopulateTerrainMap3D();
 		
 		CreateMeshData();
-	}
-	
-	void PopulateTerrainMap2D()
-	{
-		for (int x = 0; x < width + 1; x++)
-		{
-			for (int y = 0; y < height + 1; y++)
-			{
-				for (int z = 0; z < width + 1; z++)
-				{
-					float thisHeight;
-					/*if (x > 10 && x < 22 && z > 5 && z < 22) // GROOT GAT IN VLOER
-						thisHeight = 1f;
-					else*/
-
-					thisHeight = GameData.GetTerrainHeight(x + chunkPosition.x, z + chunkPosition.z);
-
-					terrainMap[x, y, z] = (float) y - thisHeight;
-				}
-			}
-		}
 	}
 	
 	void PopulateTerrainMap3D() // Refactoring PopulateTerrainMap to work with 3D mapping and noise.
